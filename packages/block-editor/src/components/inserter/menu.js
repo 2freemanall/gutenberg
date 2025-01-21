@@ -68,6 +68,17 @@ function InserterMenu(
 	const [ filterValue, setFilterValue, delayedFilterValue ] =
 		useDebouncedInput( __experimentalFilterValue );
 	const [ hoveredItem, setHoveredItem ] = useState( null );
+
+	/*
+	 * Some components may pass a string as the initial category.
+	 * Convert it to an object to match the expected format.
+	 */
+	if ( typeof __experimentalInitialCategory === 'string' ) {
+		__experimentalInitialCategory = {
+			name: __experimentalInitialCategory,
+		};
+	}
+
 	const [ selectedPatternCategory, setSelectedPatternCategory ] = useState(
 		__experimentalInitialCategory
 	);
@@ -128,7 +139,7 @@ function InserterMenu(
 				}
 			} );
 		},
-		[ onInsertBlocks, onSelect, shouldFocusBlock ]
+		[ onInsertBlocks, onSelect, shouldFocusBlock, ref ]
 	);
 
 	const onInsertPattern = useCallback(
@@ -137,7 +148,7 @@ function InserterMenu(
 			onInsertBlocks( blocks, { patternName }, ...args );
 			onSelect();
 		},
-		[ onInsertBlocks, onSelect ]
+		[ onInsertBlocks, onSelect, onToggleInsertionPoint ]
 	);
 
 	const onHover = useCallback(

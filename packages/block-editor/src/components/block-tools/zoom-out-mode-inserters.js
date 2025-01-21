@@ -93,7 +93,7 @@ function ZoomOutModeInserters() {
 						rootClientId: sectionRootClientId,
 						insertionIndex,
 						tab: 'patterns',
-						category: 'all',
+						category: 'allPatterns',
 					} );
 					showInsertionPoint( sectionRootClientId, insertionIndex, {
 						operation: 'insert',

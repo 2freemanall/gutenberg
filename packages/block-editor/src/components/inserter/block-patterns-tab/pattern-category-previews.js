@@ -118,7 +118,7 @@ export function PatternCategoryPreviews( {
 	const { changePage } = pagingProps;
 
 	// Hide block pattern preview on unmount.
-	useEffect( () => () => onHover( null ), [] );
+	useEffect( () => () => onHover( null ), [ onHover ] );
 
 	const onSetPatternSyncFilter = useCallback(
 		( value ) => {
@@ -135,6 +135,11 @@ export function PatternCategoryPreviews( {
 		[ setPatternSourceFilter, changePage ]
 	);
 
+	const categoryLabel =
+		category.name === starterPatternsCategory?.name
+			? starterPatternsCategory.label || ''
+			: category?.label;
+
 	return (
 		<>
 			<VStack
@@ -149,7 +154,7 @@ export function PatternCategoryPreviews( {
 							level={ 4 }
 							as="div"
 						>
-							{ category?.label }
+							{ categoryLabel }
 						</Heading>
 					</FlexBlock>
 					<PatternsFilter
@@ -184,7 +189,7 @@ export function PatternCategoryPreviews( {
 						blockPatterns={ pagingProps.categoryPatterns }
 						onClickPattern={ onClickPattern }
 						onHover={ onHover }
-						label={ category.label }
+						label={ categoryLabel }
 						orientation="vertical"
 						category={ category.name }
 						isDraggable
