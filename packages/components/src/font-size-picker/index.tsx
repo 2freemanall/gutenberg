@@ -216,7 +216,7 @@ const UnforwardedFontSizePicker = (
 										}
 										__shouldNotWarnDeprecated36pxSize
 										className="components-font-size-picker__custom-input"
-										label={ __( 'Font size' ) }
+										label={ __( 'Custom font size' ) }
 										hideLabelFromVision
 										value={ valueQuantity }
 										initialPosition={ fallbackFontSize }
